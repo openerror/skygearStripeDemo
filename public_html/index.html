@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Skygear + Stripe demo</title>
+    <!--Skygear CDN-->
+    <script src="https://code.skygear.io/js/skygear/1.1.0/skygear.min.js"></script>
+    <!-- OG metadata -->
+    <meta property="og:title" content="Skygear + Stripe demo" />
+    <meta property="og:description" content="Skygear Cloud Function to send form data to emails from static website" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://skygear-demo.github.io/skymail" />
+    <meta property="og:image" content="" />
+    <!-- End of OG metadata -->
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+  <body>
+    <a href="https://github.com/skygear-demo/skymail"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <div id="response">
+      <span id="response-msg"></span><br>
+      <button id="back-button">Back</button>
+    </div>
+    <form id="emailForm">
+      <h2 class="logo">Skygear X Stripe Payment (demo)</h2>
+      <p>This webpage will become a simple demo for calling the Stripe API from Skygear. To that end, Python cloud functions will be invoked through Javascript embedded in the HTML file.</p>
+      <label for="name">Name</label>
+      <br>
+      <input type="text" name="name" id="receiver" placeholder="Peter N"><br />
+
+      <label for="emailAddress">Repient Email</label>
+      <br>
+      <input type="email" name="email" id="email" placeholder="To whom?"><br />
+
+      <label for="subject">Subject</label>
+      <br>
+      <input type="text" name="name" id="subject" placeholder="Subject" value="Hello from Skymail"><br />
+
+      <label for="message">Message</label>
+      <br>
+      <textarea name="message" id="message" rows="5" cols="10" placeholder="Your message">This is a demo email from Skymail.
+It's an open source project for building simple mailing services - fork it at https://github.com/skygear-demo/skymail
+      </textarea><br />
+
+      <!-- Google recaptcha: remove these lines if your don't need recaptcha -->
+      <!-- <div class="g-recaptcha" data-sitekey="6Lf_5jQUAAAAAIYmWAhkpA5Dx82Mh2RhFKsk95Uy"></div>
+      <script src='https://www.google.com/recaptcha/api.js' async defer></script> -->
+      <!-- End of Google recaptcha -->
+    </form>
+
+    <!--Skygear configuration-->
+    <!--The app end point and the api key can be found in the developer portal-->
+    <script src="index.js"></script>
+  </body>
+</html>
