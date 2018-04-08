@@ -5,7 +5,7 @@ html, body {
 #response { display:none; padding: 5px; text-align: center;}
 .success { background-color: green;}
 .error { background-color: red;}
-form#emailForm { line-height: 1.5em; margin: auto; width: 320px;}
+form#orderForm { line-height: 1.5em; margin: auto; width: 640px;}
 button { padding: 10px 20px; background-color: #5C97BF; color: #fff; border: none; font-size: 16px; margin: 20px auto; width: 300px; cursor: pointer;border-radius: 5px;}
 input,textarea {min-width: 300px; line-height: 24px; margin-bottom: 10px;padding:8px;}
 button:focus,

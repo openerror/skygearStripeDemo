@@ -15,35 +15,51 @@
   </head>
   <body>
     <a href="https://github.com/skygear-demo/skymail"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+
     <div id="response">
       <span id="response-msg"></span><br>
       <button id="back-button">Back</button>
     </div>
-    <form id="emailForm">
+
+    <form id="orderForm">
       <h2 class="logo">Skygear X Stripe Payment (demo)</h2>
       <p>This webpage will become a simple demo for calling the Stripe API from Skygear. To that end, Python cloud functions will be invoked through Javascript embedded in the HTML file.</p>
+
+      <label for="order_item">Please select the desired product.</label>
+      <br>
+      <select name="order_item">
+         <option value="bean_standard_100">Coffee Beans, Standard, 100g pack</option>
+         <option value="bean_deluxe_100">Coffee Beans, Deluxe, 100g pack</option>
+      </select>
+
+      <br>
+      <br>
+
+      <label for="order_amount">Please select the amount you wish to order: </label>
+      <select name="order_amount">
+         <option value="1">1</option>
+         <option value="2">2</option>
+         <option value="3">3</option>
+         <option value="4">4</option>
+      </select>
+      <br>
+      <br>
+
+      <label> Next, please enter your contact information, and any special requests regarding order delivery :)</label>
+      <br><br>
       <label for="name">Name</label>
       <br>
-      <input type="text" name="name" id="receiver" placeholder="Peter N"><br />
+      <input type="text" name="name" id="name" placeholder="CKL"><br />
 
       <label for="emailAddress">Repient Email</label>
       <br>
       <input type="email" name="email" id="email" placeholder="To whom?"><br />
 
-      <label for="subject">Subject</label>
-      <br>
-      <input type="text" name="name" id="subject" placeholder="Subject" value="Hello from Skymail"><br />
-
       <label for="message">Message</label>
       <br>
       <textarea name="message" id="message" rows="5" cols="10" placeholder="Your message">This is a demo email from Skymail.
 It's an open source project for building simple mailing services - fork it at https://github.com/skygear-demo/skymail
-      </textarea><br />
-
-      <!-- Google recaptcha: remove these lines if your don't need recaptcha -->
-      <!-- <div class="g-recaptcha" data-sitekey="6Lf_5jQUAAAAAIYmWAhkpA5Dx82Mh2RhFKsk95Uy"></div>
-      <script src='https://www.google.com/recaptcha/api.js' async defer></script> -->
-      <!-- End of Google recaptcha -->
+      </textarea><br/>
     </form>
 
     <!--Skygear configuration-->

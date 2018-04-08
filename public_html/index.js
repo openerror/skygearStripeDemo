@@ -4,7 +4,7 @@ skygear.config({
   'apiKey': 'a948f89769ce4555933a42fa2c62928e',
 }).then(() => {
   console.clear();
-  console.log('skygear container is now ready for making API calls.');
+  console.log('Skygear container is now ready for making API calls.');
 }, (error) => {
   console.error(error);
 });
