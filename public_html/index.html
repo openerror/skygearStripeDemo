@@ -21,13 +21,13 @@
       <button id="back-button">Back</button>
     </div>
 
-    <form id="orderForm">
+    <form name="orderForm">
       <h2 class="logo">Skygear X Stripe Payment (demo)</h2>
       <p>This webpage will become a simple demo for calling the Stripe API from Skygear. To that end, Python cloud functions will be invoked through Javascript embedded in the HTML file.</p>
 
       <label for="order_item">Please select the desired product.</label>
       <br>
-      <select name="order_item">
+      <select name="order_item" onchange="orderTotal()">
          <option value="bean_standard_100">Coffee Beans, Standard, 100g pack</option>
          <option value="bean_deluxe_100">Coffee Beans, Deluxe, 100g pack</option>
       </select>
@@ -36,7 +36,7 @@
       <br>
 
       <label for="order_amount">Please select the amount you wish to order: </label>
-      <select name="order_amount">
+      <select name="order_amount" onchange="orderTotal()">
          <option value="1">1</option>
          <option value="2">2</option>
          <option value="3">3</option>
@@ -44,6 +44,7 @@
       </select>
       <br>
       <br>
+      <div id="total">Order total: </div>
 
       <label> Next, please enter your contact information, and any special requests regarding order delivery :)</label>
       <br><br>
