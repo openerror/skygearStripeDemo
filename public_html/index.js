@@ -22,7 +22,7 @@ function orderTotal() {
     }
     var total = unitPrice * quantity; //USD
     console.log(total);
-    document.getElementById("total").innerHTML += total + " USD";
+    document.getElementById("total").innerHTML = total + " USD";
 }
 
 var emailEl= document.getElementById('email');
