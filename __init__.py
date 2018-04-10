@@ -14,48 +14,19 @@
 from .util.skymail import Mailer
 import requests
 import skygear
+import stripe
 from . import settings
 
-def verify_grecaptcha(captcha_value):
-    verify_url = "https://www.google.com/recaptcha/api/siteverify"
-    r = requests.post(verify_url, data= {
-        'secret': settings.config["grecaptcha_secret"],
-        'response': captcha_value
+# custom logic to be invoked from SDK, e.g.
+# skygear.lambda('food:buy', {'food': 'salmon'}) for JS
+@skygear.op('submitPayment', user_required=False)
+def submitPayment(stripeToken, charge):
+    if stripeToken and charge:
+        print(stripeToken)
+        return {
+            "success": True
         }
-      )
-    result = r.json()
-    print(result['success'])
-    return result['success']
-
-@skygear.op('send_invitation_email')
-def send_invitation_email(to_email, subject="", custom_message="", grecaptcha=None):
-
-    # Check grecaptcha before sending email
-    if settings.config["enable_grecaptcha"]:
-        verified = verify_grecaptcha(grecaptcha)
-        if not verified:
-          return {
-            'result': 'Fail',
-            'msg': 'captcha incorrect'
-          }
-
-    print("Prepare to send")
-    sender = settings.config["default_sender"]
-    reply_to = settings.config["default_reply_to"]
-
-    subject = subject
-    text = custom_message
-    html = '<p>'+custom_message+'</p>'
-
-    mailer = Mailer(
-      smtp_host=settings.smtp_settings["smtp_host"],
-      smtp_port=settings.smtp_settings["smtp_port"],
-      smtp_mode=settings.smtp_settings["smtp_mode"],
-      smtp_login=settings.smtp_settings["smtp_login"],
-      smtp_password=settings.smtp_settings["smtp_password"]
-    )
-    mailer.send_mail(sender, to_email, subject, text, html=html, reply_to=reply_to)
-    print("Email sent")
-    return {
-      'result': 'OK',
-    }
+    else:
+        return {
+            "success": False
+        }
