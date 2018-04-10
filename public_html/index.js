@@ -21,14 +21,13 @@ function orderTotal() {
         var unitPrice = 7;
     }
     var total = unitPrice * quantity; //USD
-    console.log(total);
-    document.getElementById("total").innerHTML = total + " USD";
+    document.getElementById("total").innerHTML = total;
 }
 
-function stripeTokenHandler() {
-    var total = document.getElementById("total");
-    console.log(total);
-    alert("Token handler triggered!");
+function stripeTokenHandler(token) {
+    var total = Number(document.getElementById("total").innerHTML);
+    console.log("Token received; charging " + total + " USD");
+    //skygear.lambda()
 }
 
 // Create a Stripe client.

@@ -42,9 +42,13 @@
          <option value="3">3</option>
          <option value="4">4</option>
       </select>
+
       <br>
       <br>
-      <div id="total">Order total: </div>
+
+      Order total (USD): <b id="total"></b>
+
+      <br>
 
       <label> Next, please enter your contact information, and any special requests regarding order delivery :)</label>
       <br><br>
@@ -63,8 +67,8 @@ It's an open source project for building simple mailing services - fork it at ht
       </textarea><br/>
     </form>
 
+    <!--Stripe card payment form-->
     <script src="https://js.stripe.com/v3/"></script>
-
     <form action="/charge" method="post" id="payment-form">
       <div class="form-row">
         <label for="card-element">
