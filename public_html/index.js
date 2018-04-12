@@ -1,7 +1,8 @@
 // UPDATE the endpoint here
+apiKey = 'a948f89769ce4555933a42fa2c62928e';
 skygear.config({
   'endPoint': 'https://babysteps.skygeario.com/', // trailing slash is required
-  'apiKey': 'a948f89769ce4555933a42fa2c62928e',
+  'apiKey': apiKey,
 }).then(() => {
   console.clear();
   console.log('Skygear container is now ready for making API calls.');
@@ -49,19 +50,35 @@ function stripeTokenHandler(token) {
                 console.log("Payment is sent!");
 
                 // Record successful charge in private database
-                const recordDBType = skygear.Record.extend('Selling Record');
-                const salesRecord = new recordDBType(response);
-                //This creates a new record value 'Hello World' stored under a column called 'content' in the 'note' record type.
-
-                skygear.publicDB.save(salesRecord).then((record) => {
-                    console.log(record);
+                skygear.auth.signupAnonymously().then((user) => {
+                    console.log(user); // user record without email and username
                 }, (error) => {
                     console.error(error);
-}               );
+                });
+
+                // const user = skygear.auth.currentUser;
+                const recordDBType = skygear.Record.extend('Selling Record');
+                const salesRecord = new recordDBType(response);
+
+                skygear.publicDB.save(salesRecord).then((record) => {
+                        console.log(record);
+                    }, (error) => {
+                        console.error(error);
+                    }
+                );
 
             } else {
                 // Charge failed; print response to JS console
                 console.log(response);
+                const recordDBType = skygear.Record.extend('Failure Record');
+                const failureRecord = new recordDBType(response);
+
+                skygear.publicDB.save(failureRecord).then((record) => {
+                        //console.log(record);
+                    }, (error) => {
+                        console.error(error);
+                    }
+                );
             }
         })
 }
