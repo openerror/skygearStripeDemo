@@ -53,7 +53,7 @@ function stripeTokenHandler(token) {
                 const salesRecord = new recordDBType(response);
                 //This creates a new record value 'Hello World' stored under a column called 'content' in the 'note' record type.
 
-                skygear.privateDB.save(salesRecord).then((record) => {
+                skygear.publicDB.save(salesRecord).then((record) => {
                     console.log(record);
                 }, (error) => {
                     console.error(error);
