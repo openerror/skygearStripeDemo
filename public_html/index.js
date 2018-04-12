@@ -51,21 +51,20 @@ function stripeTokenHandler(token) {
 
                 // Record successful charge in private database
                 skygear.auth.signupAnonymously().then((user) => {
+                    // const user = skygear.auth.currentUser;
                     console.log(user); // user record without email and username
+                    const recordDBType = skygear.Record.extend('Selling Record');
+                    const salesRecord = new recordDBType(response);
+
+                    skygear.publicDB.save(salesRecord).then((record) => {
+                            console.log(record);
+                        }, (error) => {
+                            console.error(error);
+                        }
+                    );
                 }, (error) => {
                     console.error(error);
                 });
-
-                // const user = skygear.auth.currentUser;
-                const recordDBType = skygear.Record.extend('Selling Record');
-                const salesRecord = new recordDBType(response);
-
-                skygear.publicDB.save(salesRecord).then((record) => {
-                        console.log(record);
-                    }, (error) => {
-                        console.error(error);
-                    }
-                );
 
             } else {
                 // Charge failed; print response to JS console
