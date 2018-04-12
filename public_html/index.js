@@ -27,7 +27,23 @@ function orderTotal() {
 function stripeTokenHandler(token) {
     var total = Number(document.getElementById("total").innerHTML);
     console.log("Token received; charging " + total + " USD");
-    //skygear.lambda()
+
+    const params = {
+        "stripeToken": token,
+        "charge": total
+    }
+
+    skygear.lambda("submitPayment", params)
+        .then(response => {
+            console.log(response);
+            alert("Response is sent!");
+
+            if (response.success === true){
+                console.log("Payment is sent!");
+            } else {
+                console.log(response.error_msg);
+            }
+        })
 }
 
 // Create a Stripe client.

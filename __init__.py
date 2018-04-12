@@ -22,11 +22,11 @@ from . import settings
 @skygear.op('submitPayment', user_required=False)
 def submitPayment(stripeToken, charge):
     if stripeToken and charge:
-        print(stripeToken)
         return {
             "success": True
         }
     else:
         return {
-            "success": False
+            "success": False,
+            "error_msg": "Cloud::submitPayment(): Missing token or charge amount!"
         }
