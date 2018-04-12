@@ -10,6 +10,7 @@ skygear.config({
 });
 
 function orderTotal() {
+    /* Updates and displays the order amount on HTML frontend */
     //alert("I have been triggered!");
 
     var type = document.orderForm.order_item.value;
@@ -25,6 +26,10 @@ function orderTotal() {
 }
 
 function stripeTokenHandler(token) {
+    /* Triggered after clicking "Submit" under the card form.
+        IF card info is valid, will call Python cloud function to actually
+        charge the card.
+    */
     var total = Number(document.getElementById("total").innerHTML);
     console.log("Token received; charging " + total + " USD");
 
@@ -40,8 +45,24 @@ function stripeTokenHandler(token) {
             alert("Charge attempted!");
 
             if (response.success === true){
+                alert("Charge successful!")
                 console.log("Payment is sent!");
+
+                // Record successful charge in private database
+//                 const recordDBType = skygear.Record.extend('Selling Record');
+//                 const record = new recordDBType({ 'content': 'Hello World' });
+//                 //This creates a new record value 'Hello World' stored under a column called 'content' in the 'note' record type.
+//
+//                 skygear.privateDB.save(new Note({
+//                     'content': 'Hello World!'
+//                 })).then((record) => {
+//                     console.log(record);
+//                 }, (error) => {
+//                     console.error(error);
+// }               );
+
             } else {
+                // Charge failed; print response to JS console
                 console.log(response);
             }
         })
