@@ -14,21 +14,29 @@
 import requests
 import skygear
 import stripe
-from settings import stripe_settings
+from . import settings
 
-stripe.api_key = stripe_settings["api_key"]
+stripe.api_key = settings.stripe_settings["api_key"]
 
 # Function responsible for charging thge customer through Stripe
 # Invoked from HTML frontend via index.js
 @skygear.op('submitPayment', user_required=False)
-def submitPayment(stripeToken, charge):
+def submitPayment(stripeToken, charge, product):
     if stripeToken and charge:
+        # If all necessary arguments are supplied, charge card
         try:
-          # Use Stripe's library to make requests...
-          return {
+            charge = int(charge * 100.0) #Must convert from dollars to cents
+            description = f"Charging {charge} USD for {product}"
+            stripe.Charge.create(amount=charge, currency="usd",
+                                description=description,
+                                source="tok_visa", # obtained with Stripe.js
+                                )
+            return {
               "success": True,
-              "charge_amount": charge
-          }
+              "charge_amount": charge,
+              "product": product
+            }
+
         except stripe.error.CardError as e:
             # Since it's a decline, stripe.error.CardError will be caught
             return parseError(e)

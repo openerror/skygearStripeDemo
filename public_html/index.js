@@ -30,18 +30,19 @@ function stripeTokenHandler(token) {
 
     const params = {
         "stripeToken": token,
-        "charge": total
-    }
+        "charge": total, // Charge amount in whole DOLLARS; e.g. total=14.1 == 14.1 USD
+        "product": document.orderForm.order_item.value
+    };
 
     skygear.lambda("submitPayment", params)
         .then(response => {
             console.log(response);
-            alert("Response is sent!");
+            alert("Charge attempted!");
 
             if (response.success === true){
                 console.log("Payment is sent!");
             } else {
-                console.log(response.error_msg);
+                console.log(response);
             }
         })
 }
