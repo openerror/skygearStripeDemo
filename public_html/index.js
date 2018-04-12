@@ -49,17 +49,15 @@ function stripeTokenHandler(token) {
                 console.log("Payment is sent!");
 
                 // Record successful charge in private database
-//                 const recordDBType = skygear.Record.extend('Selling Record');
-//                 const record = new recordDBType({ 'content': 'Hello World' });
-//                 //This creates a new record value 'Hello World' stored under a column called 'content' in the 'note' record type.
-//
-//                 skygear.privateDB.save(new Note({
-//                     'content': 'Hello World!'
-//                 })).then((record) => {
-//                     console.log(record);
-//                 }, (error) => {
-//                     console.error(error);
-// }               );
+                const recordDBType = skygear.Record.extend('Selling Record');
+                const salesRecord = new recordDBType(response);
+                //This creates a new record value 'Hello World' stored under a column called 'content' in the 'note' record type.
+
+                skygear.privateDB.save(salesRecord).then((record) => {
+                    console.log(record);
+                }, (error) => {
+                    console.error(error);
+}               );
 
             } else {
                 // Charge failed; print response to JS console

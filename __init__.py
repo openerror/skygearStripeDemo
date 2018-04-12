@@ -14,6 +14,7 @@
 import requests
 import skygear
 import stripe
+from datetime import datetime
 from . import settings
 
 stripe.api_key = settings.stripe_settings["api_key"]
@@ -31,10 +32,13 @@ def submitPayment(stripeToken, charge, product):
                                 description=description,
                                 source="tok_visa", # obtained with Stripe.js
                                 )
+
+            dateNow = datetime.now()
             return {
-              "success": True,
-              "charge_amount": charge,
-              "product": product
+              "success": True, "charge_amount": charge, "product": product,
+              "year": dateNow[0],
+              "month": dateNow[1],
+              "day": dateNow[2]
             }
 
         except stripe.error.CardError as e:
