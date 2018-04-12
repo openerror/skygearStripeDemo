@@ -36,9 +36,9 @@ def submitPayment(stripeToken, charge, product):
             dateNow = datetime.now()
             return {
               "success": True, "charge_amount": charge, "product": product,
-              "year": dateNow[0],
-              "month": dateNow[1],
-              "day": dateNow[2]
+              "year": dateNow.year,
+              "month": dateNow.month,
+              "day": dateNow.day
             }
 
         except stripe.error.CardError as e:
