@@ -1,5 +1,5 @@
 html, body {
-    font-family: "courier new",Lato, Arial, sans-serif;
+    font-family: "arial",Lato, Arial, sans-serif;
 }
 
 #response { display:none; padding: 5px; text-align: center;}
