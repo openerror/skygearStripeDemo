@@ -35,10 +35,10 @@
 
       <label for="order_amount">Please select the amount you wish to order: </label>
       <select name="order_amount" onchange="orderTotal()">
-         <option value="1">1</option>
-         <option value="2">2</option>
-         <option value="3">3</option>
-         <option value="4">4</option>
+         <option value="1" >1</option>
+         <option value="2" >2</option>
+         <option value="3" >3</option>
+         <option value="4" >4</option>
       </select>
 
       <br>
@@ -65,6 +65,10 @@ It's an open source project for building simple mailing services - fork it at ht
       </textarea><br/>
     </form>
 
+    <p id="testCards">To avoid using your own credit card number, input one of the test cards provided by Stripe.
+        For instance, you can use 4242 4242 4242 4242, and any arbitary combination of CSV and ZIP code.
+        See <a href="https://stripe.com/docs/testing#cards">here</a> for a comprehensive list.
+    </p>
     <!--Stripe card payment form-->
     <script src="https://js.stripe.com/v3/"></script>
     <form action="/charge" method="post" id="payment-form">
