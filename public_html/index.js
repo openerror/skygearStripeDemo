@@ -69,6 +69,9 @@ function stripeTokenHandler(token) {
             } else {
                 // Charge failed; print response to JS console
                 console.log(response);
+                if (typeof response.error_msg !== "undefined") {
+                    alert("Error: did you forget to select a product and/or an amount?");
+                }
                 const recordDBType = skygear.Record.extend('Failure Record');
                 const failureRecord = new recordDBType(response);
 

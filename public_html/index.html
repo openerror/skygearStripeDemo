@@ -35,6 +35,7 @@
 
       <label for="order_amount">Please select the amount you wish to order: </label>
       <select name="order_amount" onchange="orderTotal()">
+         <option selected hidden value="-1">Choose here</option>
          <option value="1" >1</option>
          <option value="2" >2</option>
          <option value="3" >3</option>
@@ -66,7 +67,7 @@ It's an open source project for building simple mailing services - fork it at ht
     </form>
 
     <p id="testCards">To avoid using your own credit card number, input one of the test cards provided by Stripe.
-        For instance, you can use 4242 4242 4242 4242, and any arbitary combination of CSV and ZIP code.
+        For instance, you can use 4242 4242 4242 4242, and any arbitary expiration date, CSV and ZIP code.
         See <a href="https://stripe.com/docs/testing#cards">here</a> for a comprehensive list.
     </p>
     <!--Stripe card payment form-->
