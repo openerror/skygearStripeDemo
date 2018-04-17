@@ -1,5 +1,3 @@
-# Copyright 2017 Oursky Ltd.
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -11,6 +9,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 import requests
 import skygear
 import stripe
@@ -19,19 +18,28 @@ from . import settings
 
 stripe.api_key = settings.stripe_settings["api_key"]
 
-# Function responsible for charging thge customer through Stripe
+# Function responsible for charging the customer through Stripe
 # Invoked from HTML frontend via index.js
 @skygear.op('submitPayment', user_required=False)
 def submitPayment(stripeToken, charge, product):
     if stripeToken and charge:
-        # If all necessary arguments are supplied, charge card
+        '''
+            If all necessary arguments are supplied, charge card
+            tok_visa is one of the test tokens provided by Stripe
+            See https://stripe.com/docs/testing#cards
+
+            Using fixed value, because the Stripe.js payment form (somehow) doesn't automatically
+            supplying a secure token, which triggers a security error and a warming email from Stripe
+            TODO: investigate tokenization via calling Stripe API
+        '''
         try:
             charge = int(charge * 100.0) #Must convert from dollars to cents
             description = f"Charging {charge} USD for {product}"
             stripe.Charge.create(amount=charge, currency="usd",
                                 description=description,
-                                source="tok_visa", # obtained with Stripe.js
+                                source="tok_visa",
                                 )
+
 
             dateNow = datetime.now()
             return {
