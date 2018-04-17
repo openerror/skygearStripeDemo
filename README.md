@@ -12,15 +12,17 @@ By invoking Python cloud functions, this demo is able to access the [Stripe API]
 This demo was developed using Python version 3.6, and has not been tested extensively on other set ups. It is recommended to carry out the following steps in a new [conda environment](https://conda.io/docs/user-guide/tasks/manage-environments.html) or [virtual env](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
 
 To begin, install *skygear* and *stripe_api* on *pip*. These packages are not available elsewhere.
-`pip install skygear stripe_api`
+```
+pip install skygear stripe_api
+```
 
 To host the demo on Skygear's official cloud, please also install [*skycli*](https://github.com/SkygearIO/skycli), a command-line interface to the Skygear portal. Apart from database functionalities, the demo should also work locally on disk.
 
 ### Create submission folder
-If you were to use
+If *skycli* is used, then go to the working directory and execute `skycli init`. The program would then guide you to set up automated submission to the official cloud.
 
 ### Set up API keys
-For Skygear, look for ... As for Stripe, insert the appropriate test key in settings.py.
+For Skygear, change index.js. As for Stripe, insert the appropriate test key in settings.py.
 
 ### Test and run :)
 If deployed onto the official cloud, access through [](https://[app_name].skygeario.com/static). If on disk, simply open index.html.
