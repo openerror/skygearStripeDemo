@@ -26,16 +26,31 @@ function orderTotal() {
     document.getElementById("total").innerHTML = total;
 }
 
+function validateName(name){
+    if (name == ''){
+        alert("Please input a name for your order. Aborting for now.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
 function stripeTokenHandler(token) {
     /* Triggered after clicking "Submit" under the card form.
         IF card info is valid, will call Python cloud function to actually
         charge the card.
     */
-    var total = Number(document.getElementById("total").innerHTML);
-    console.log("Token received; charging " + total + " USD");
 
     // Ideally, should perform some form of input validation before proceeding
     // e.g. check whether there are invalid characters in clientName
+    var clientName = document.orderForm.name.value;
+    if (validateName(clientName) === false){
+        return false;
+    }
+
+    var total = Number(document.getElementById("total").innerHTML);
+    console.log("Token received; charging " + total + " USD");
+
     const params = {
         "stripeToken": token,
         "charge": total, // Charge amount in whole DOLLARS; e.g. total=14.1 == 14.1 USD
@@ -54,7 +69,6 @@ function stripeTokenHandler(token) {
 
                 // Record successful charge in private database
                 skygear.auth.signupAnonymously().then((user) => {
-                    // const user = skygear.auth.currentUser;
                     console.log(user); // user record without email and username
                     const recordDBType = skygear.Record.extend('Selling Record');
                     const salesRecord = new recordDBType(response);
@@ -87,6 +101,9 @@ function stripeTokenHandler(token) {
             }
         })
 }
+
+// ############################ //
+/* Stripe related code below */
 
 // Create a Stripe client.
 var stripe = Stripe('pk_test_uAtBlhuCgWcQ1OO9H6DfcNC4');
