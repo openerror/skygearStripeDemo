@@ -34,10 +34,13 @@ function stripeTokenHandler(token) {
     var total = Number(document.getElementById("total").innerHTML);
     console.log("Token received; charging " + total + " USD");
 
+    // Ideally, should perform some form of input validation before proceeding
+    // e.g. check whether there are invalid characters in clientName
     const params = {
         "stripeToken": token,
         "charge": total, // Charge amount in whole DOLLARS; e.g. total=14.1 == 14.1 USD
-        "product": document.orderForm.order_item.value
+        "product": document.orderForm.order_item.value,
+        "clientName": document.orderForm.name.value
     };
 
     skygear.lambda("submitPayment", params)

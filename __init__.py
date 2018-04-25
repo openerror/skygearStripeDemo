@@ -21,7 +21,7 @@ stripe.api_key = settings.stripe_settings["api_key"]
 # Function responsible for charging the customer through Stripe
 # Invoked from HTML frontend via index.js
 @skygear.op('submitPayment', user_required=False)
-def submitPayment(stripeToken, charge, product):
+def submitPayment(stripeToken, charge, product, clientName):
     if stripeToken and charge:
         '''
             If all necessary arguments are supplied, charge card
@@ -44,6 +44,7 @@ def submitPayment(stripeToken, charge, product):
             dateNow = datetime.now()
             return {
               "success": True, "charge_amount": charge, "product": product,
+              "client_name": clientName,
               "year": dateNow.year,
               "month": dateNow.month,
               "day": dateNow.day
