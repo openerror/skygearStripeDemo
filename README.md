@@ -27,7 +27,7 @@ For Skygear, change index.js. As for Stripe, insert the appropriate test key in 
 ### Test and run :)
 If deployed onto the official cloud, access through [](https://[app_name].skygeario.com/static). If on disk, simply open index.html.
 
-Select in the HTML frontend the amount and type of coffee beans to "order"; enter dummy card information into the payment form, and then click **Submit**. For example, try the card number 4242 4242 4242 4242, plus any combination of CSV and ZIP code. The payment should now appear in your Stripe account.
+Select in the HTML frontend the amount and type of coffee beans to "order"; enter dummy card information into the payment form, and then click **Submit**. For example, try the card number 4242 4242 4242 4242, plus any arbitrary combination of expiration date, CSV and ZIP code. The payment should now appear in your Stripe account.
 
 ## Credits
 Everest Law wrote the code; David Ng and Ten Tang from Oursky gave valuable feedback on bug-fixes and error-handling.
