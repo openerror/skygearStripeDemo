@@ -1,7 +1,10 @@
 // UPDATE the endpoint here
-apiKey = 'a948f89769ce4555933a42fa2c62928e';
+const endpoint = 'https://babystep.skygeario.com/'; // trailing slash is required
+const apiKey = 'a948f89769ce4555933a42fa2c62928e';
+
+
 skygear.config({
-  'endPoint': 'https://babysteps.skygeario.com/', // trailing slash is required
+  'endPoint': endpoint, 
   'apiKey': apiKey,
 }).then(() => {
   console.clear();
