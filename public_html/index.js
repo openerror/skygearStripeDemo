@@ -4,7 +4,7 @@ const apiKey = 'a948f89769ce4555933a42fa2c62928e';
 
 
 skygear.config({
-  'endPoint': endpoint, 
+  'endPoint': endpoint,
   'apiKey': apiKey,
 }).then(() => {
   console.clear();
@@ -64,7 +64,6 @@ function stripeTokenHandler(token) {
     skygear.lambda("submitPayment", params)
         .then(response => {
             console.log(response);
-            alert("Charge attempted!");
 
             if (response.success === true){
                 alert("Charge successful!")
