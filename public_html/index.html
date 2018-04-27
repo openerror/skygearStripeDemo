@@ -19,21 +19,24 @@
       <button id="back-button">Back</button>
     </div>
 
-    <form name="orderForm">
-      <h2 class="logo">Skygear X Stripe Payment (demo)</h2>
-      <p>This webpage will become a simple demo for calling the Stripe API from Skygear. To that end, Python cloud functions will be invoked through Javascript embedded in the HTML file.</p>
+    <!--Stripe card payment form-->
+    <h2 class="logo">Skygear X Stripe Payment (demo)</h2>
+    <form action="/charge" method="post" id="payment-form" name="paymentForm">
+      <div class="info">
+        <p>This webpage is a simple demo for calling the Stripe API from Skygear. Python cloud functions will be invoked through Javascript embedded in the HTML file.</p>
+      </div>
 
-      <label for="order_item">Please select the desired product.</label>
+      <h3>1. Make an order</h3>
+      <label for="order_item">Please select the desired product:</label>
       <br>
       <select name="order_item" onchange="orderTotal()">
          <option value="bean_standard_100">Coffee Beans, Standard, 100g pack</option>
          <option value="bean_deluxe_100">Coffee Beans, Deluxe, 100g pack</option>
       </select>
 
-      <br>
-      <br>
+      <br><br>
 
-      <label for="order_amount">Please select the amount you wish to order: </label>
+      <label for="order_amount">and the amount you wish to order: </label>
       <select name="order_amount" onchange="orderTotal()">
          <option selected hidden value="-1">Choose here</option>
          <option value="1" >1</option>
@@ -45,37 +48,26 @@
       <br>
       <br>
 
-      Order total (USD): <b id="total"></b>
+
+      Order total (USD): <b id="total">0</b>
 
       <br>
+      <hr>
+      <h3>2. Fill in your information</h3>
 
-      <label> Next, please enter your contact information, and any special requests regarding order delivery :)</label>
+      <label> Next, please enter your contact information.</label>
       <br><br>
-      <label for="name">Name</label>
-      <br>
-      <input type="text" name="name" id="name" placeholder="CKL" required><br />
 
-      <label for="emailAddress">Repient Email</label>
+      <label for="name">Client Name</label>
       <br>
-      <input type="email" name="email" id="email" placeholder="To whom?"><br />
+      <input type="text" name="name" id="name" placeholder="Enter your name here"><br />
+      <h3>3. Enter card information</h3>
 
-      <label for="message">Message</label>
-      <br>
-      <textarea name="message" id="message" rows="5" cols="10" placeholder="Your message">This is a demo email from Skymail.
-It's an open source project for building simple mailing services - fork it at https://github.com/skygear-demo/skymail
-      </textarea><br/>
-    </form>
-
-    <p id="testCards">To avoid using your own credit card number, input one of the test cards provided by Stripe.
-        For instance, you can use 4242 4242 4242 4242, and any arbitary expiration date, CSV and ZIP code.
-        See <a href="https://stripe.com/docs/testing#cards">here</a> for a comprehensive list.
-    </p>
-    <!--Stripe card payment form-->
-    <script src="https://js.stripe.com/v3/"></script>
-    <form action="/charge" method="post" id="payment-form">
+      <p id="testCards">To avoid using your own credit card number, input one of the test cards provided by Stripe.<br><br>
+      For instance, you can use <code>4242 4242 4242 4242</code>, and any arbitary expiration date, CSV and ZIP code. See <a href="https://stripe.com/docs/testing#cards">here</a> for a comprehensive list.
+      </p>
       <div class="form-row">
         <label for="card-element">
-          Credit or debit card
         </label>
         <div id="card-element">
           <!-- A Stripe Element will be inserted here. -->
@@ -83,13 +75,15 @@ It's an open source project for building simple mailing services - fork it at ht
 
         <!-- Used to display form errors. -->
         <div id="card-errors" role="alert"></div>
+        <div class="submit-row"><button>Submit Payment</button></div>
       </div>
 
-      <button>Submit Payment</button>
+      
     </form>
 
     <!--Skygear configuration-->
     <!--The app end point and the api key can be found in the developer portal-->
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="index.js"></script>
   </body>
 </html>

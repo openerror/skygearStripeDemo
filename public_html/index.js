@@ -15,7 +15,8 @@ skygear.config({
 
 function orderTotal() {
     /* Updates and displays the order amount on HTML frontend */
-    //alert("I have been triggered!");
+    var type = document.paymentForm.order_item.value;
+    var quantity = parseInt(document.paymentForm.order_amount.value);
 
     var type = document.orderForm.order_item.value;
     var quantity = parseInt(document.orderForm.order_amount.value);
@@ -46,7 +47,7 @@ function stripeTokenHandler(token) {
 
     // Ideally, should perform some form of input validation before proceeding
     // e.g. check whether there are invalid characters in clientName
-    var clientName = document.orderForm.name.value;
+    var clientName = document.paymentForm.name.value;
     if (validateName(clientName) === false){
         return false;
     }
@@ -57,8 +58,8 @@ function stripeTokenHandler(token) {
     const params = {
         "stripeToken": token,
         "charge": total, // Charge amount in whole DOLLARS; e.g. total=14.1 == 14.1 USD
-        "product": document.orderForm.order_item.value,
-        "clientName": document.orderForm.name.value
+        "product": document.paymentForm.order_item.value,
+        "clientName": document.paymentForm.name.value
     };
 
     skygear.lambda("submitPayment", params)
