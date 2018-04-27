@@ -1,7 +1,10 @@
 // UPDATE the endpoint here
-apiKey = 'a948f89769ce4555933a42fa2c62928e';
+const endpoint = 'https://babystep.skygeario.com/'; // trailing slash is required
+const apiKey = 'a948f89769ce4555933a42fa2c62928e';
+
+
 skygear.config({
-  'endPoint': 'https://babysteps.skygeario.com/', // trailing slash is required
+  'endPoint': endpoint, 
   'apiKey': apiKey,
 }).then(() => {
   console.clear();
@@ -12,10 +15,10 @@ skygear.config({
 
 function orderTotal() {
     /* Updates and displays the order amount on HTML frontend */
-    //alert("I have been triggered!");
+    var type = document.paymentForm.order_item.value;
+    var quantity = parseInt(document.paymentForm.order_amount.value);
 
-    var type = document.orderForm.order_item.value;
-    var quantity = parseInt(document.orderForm.order_amount.value);
+    quantity = (quantity== -1)? 0 : quantity; // If not integer, then assume 0
 
     if (type == "bean_standard_100"){
         var unitPrice = 5;
@@ -43,7 +46,7 @@ function stripeTokenHandler(token) {
 
     // Ideally, should perform some form of input validation before proceeding
     // e.g. check whether there are invalid characters in clientName
-    var clientName = document.orderForm.name.value;
+    var clientName = document.paymentForm.name.value;
     if (validateName(clientName) === false){
         return false;
     }
@@ -54,8 +57,8 @@ function stripeTokenHandler(token) {
     const params = {
         "stripeToken": token,
         "charge": total, // Charge amount in whole DOLLARS; e.g. total=14.1 == 14.1 USD
-        "product": document.orderForm.order_item.value,
-        "clientName": document.orderForm.name.value
+        "product": document.paymentForm.order_item.value,
+        "clientName": document.paymentForm.name.value
     };
 
     skygear.lambda("submitPayment", params)
