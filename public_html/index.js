@@ -18,8 +18,7 @@ function orderTotal() {
     var type = document.paymentForm.order_item.value;
     var quantity = parseInt(document.paymentForm.order_amount.value);
 
-    var type = document.orderForm.order_item.value;
-    var quantity = parseInt(document.orderForm.order_amount.value);
+    quantity = (quantity== -1)? 0 : quantity; // If not integer, then assume 0
 
     if (type == "bean_standard_100"){
         var unitPrice = 5;
