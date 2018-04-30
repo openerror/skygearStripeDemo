@@ -24,6 +24,8 @@ function orderTotal() {
         var unitPrice = 5;
     } else if (type == "bean_deluxe_100") {
         var unitPrice = 7;
+    } else if (type == "") {
+        var unitPrice = 0;
     }
     var total = unitPrice * quantity; //USD
     document.getElementById("total").innerHTML = total;
