@@ -1,5 +1,5 @@
 // UPDATE the endpoint here
-const endpoint = 'https://babystep.skygeario.com/'; // trailing slash is required
+const endpoint = 'https://babysteps.skygeario.com/'; // trailing slash is required
 const apiKey = 'a948f89769ce4555933a42fa2c62928e';
 
 
