@@ -26,7 +26,7 @@ This demo was developed using Python version 3.6, and has not been tested extens
 
 
 ### Set up API keys
-Change Skygear endpoint and APIKeys at `public_html/index.js`. For Stripe, insert the appropriate test key in `settings.py`.
+Change the Skygear endpoint and API keys at `public_html/index.js`. For Stripe, insert the appropriate test key in `settings.py`.
 
 ## Develop
 To begin development locally, install *skygear* and *stripe_api* on *pip*. These packages are not available elsewhere.
@@ -36,9 +36,9 @@ pip install skygear stripe_api
 
 ## Deploy
 
-To host the demo on Skygear.io hosted cloud, please also install [*skycli*](https://github.com/SkygearIO/skycli), a command-line interface to the Skygear portal. Apart from database functionalities, the demo should also work locally on disk.
+To host the demo on the official cloud [Skygear.io](https://skygear.io), please also install [*skycli*](https://github.com/SkygearIO/skycli), a command-line interface to the Skygear portal. Apart from database functionalities, the demo should also work locally on disk.
 
-You need to use *skycli* to init a skygear cloud function project, then go to the working directory and execute `skycli init`. The program would then guide you to set up automated submission to the official cloud.
+To initialise a cloud function project, go to the working directory and execute `skycli init`. Then follow the onscreen instructions to set up automated submission to the official cloud.
 
 ### Test and run :)
 If deployed onto the official cloud, access through [](https://[app_name].skygeario.com/static). If on disk, simply open index.html.
